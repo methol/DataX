@@ -1,9 +1,14 @@
 # step 1 maven build
 FROM maven:3-openjdk-8-slim AS builder
 
-RUN mvn -q -U clean package assembly:assembly -Dmaven.test.skip=true \
-        #拷贝编译结果到指定目录
-        && mv target/datax/datax /datax
+ADD * /tmp/code
+RUN cd /tmp/code
+RUN cd /tmp/code \
+    && mvn -q -U clean package assembly:assembly -Dmaven.test.skip=true \
+    #拷贝编译结果到指定目录
+    && mv target/datax/datax /datax \
+    #清理编译痕迹
+    && cd / && rm -rf /tmp/code
 
 
 # step 2
