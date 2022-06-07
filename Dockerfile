@@ -1,7 +1,7 @@
 # step 1 maven build
 FROM maven:3-openjdk-8-slim AS builder
 
-RUN mvn -q -U clean package assembly:assembly -Dmaven.test.skip=true
+RUN mvn -q -U clean package assembly:assembly -Dmaven.test.skip=true \
         #拷贝编译结果到指定目录
         && mv target/datax/datax /datax
 
