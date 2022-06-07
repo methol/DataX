@@ -4,6 +4,8 @@ FROM maven:3-openjdk-8-slim AS builder
 ADD * /tmp/code/
 RUN cd /tmp/code
 RUN cd /tmp/code \
+    # 查看目录下的内容
+    && ls -la\
     && mvn -q -U clean package assembly:assembly -Dmaven.test.skip=true \
     #拷贝编译结果到指定目录
     && mv target/datax/datax /datax \
