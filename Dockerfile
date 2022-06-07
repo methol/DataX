@@ -1,7 +1,7 @@
 # step 1 maven build
 FROM maven:3-openjdk-8-slim AS builder
 
-ADD * /tmp/code/
+ADD ./* /tmp/code/
 RUN cd /tmp/code
 RUN cd /tmp/code \
     # 查看目录下的内容
