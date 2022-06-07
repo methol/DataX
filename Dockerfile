@@ -1,7 +1,8 @@
 # step 1 maven build
 FROM maven:3-openjdk-8-slim AS builder
 
-ADD ./* /tmp/code/
+# 注意需要在上层目录运行
+ADD DataX /tmp/code/
 RUN cd /tmp/code \
     # 查看目录下的内容
     && ls -la\
