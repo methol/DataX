@@ -16,6 +16,7 @@ RUN cd /tmp/code \
 # step 2
 FROM amd64/openjdk:8-slim
 
+RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list
 ENV TZ=Asia/Shanghai
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
