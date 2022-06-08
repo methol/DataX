@@ -20,7 +20,7 @@ ENV TZ=Asia/Shanghai
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone; \
-    apt-get install -y python
+    apt-get update -y && apt-get install -y python
 
 # Copy our static executable.
 COPY --from=builder /datax /datax
