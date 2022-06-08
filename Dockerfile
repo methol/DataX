@@ -19,14 +19,12 @@ FROM amd64/openjdk:8-slim
 ENV TZ=Asia/Shanghai
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
-    echo $TZ > /etc/timezone \
-    apt-get install python
+    echo $TZ > /etc/timezone; \
+    apt-get install -y python
 
 # Copy our static executable.
 COPY --from=builder /datax /datax
 
-ENV PATH=/datax/bin:$PATH
-
 # 启动命令
 ENTRYPOINT ["datax.py"]
-CMD ["--help"]
+CMD ["python", "datax.py", "/data/datax/job.json"]
