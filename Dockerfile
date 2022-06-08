@@ -17,6 +17,7 @@ RUN cd /tmp/code \
 FROM amd64/openjdk:8-slim
 
 RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list
+RUN sed -i s/security.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list
 ENV TZ=Asia/Shanghai
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
@@ -27,5 +28,4 @@ RUN set -eux; \
 COPY --from=builder /datax /datax
 
 # 启动命令
-ENTRYPOINT ["datax.py"]
-CMD ["python", "datax.py", "/data/datax/job.json"]
+CMD ["python", "/datax/bin/datax.py", "/data/datax/job.json"]
